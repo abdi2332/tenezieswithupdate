@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #0B2434;
+}
+main{
+  width: 360px;
+  height: 400px;
+  margin: 20px auto;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.dieContainer {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: auto auto;
+  grid-gap: 10px;
+  grid-column-gap: 10px;
+}
+.instructions {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  margin-top: 0;
+  text-align: center;
+}
+button{
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border: none;
+  box-shadow: 2px 1px;
+  border-radius: 5px;
+  font-size: larger;
+  font-weight: bold;
+  cursor: pointer;
+}
+#roll{
+  background-color: blue;
+  color: white;
+  margin-top: 20px;
+  padding: 5px 15px;
+  width: 120px;
+  height: 40px;
+  font-size: medium;
+}
+#roll:hover{
+  background-color: rgb(80, 80, 238);
+}
