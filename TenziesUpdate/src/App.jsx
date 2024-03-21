@@ -8,8 +8,12 @@ import Die from './Die'
 function App() {
   
 const [dice,setDice]=React.useState(generateNum())
-
 const[Tenzies,setTenzies]=React.useState(false)
+const [rounds,setRounds]=React.useState(1)
+const[seconds,setSeconds]=React.useState(0)
+const[highscore,setHighScore]=React.useState(localStorage.getItem('HighScore'))
+
+ const timerId=React.useRef()
 
 React.useEffect(()=>{
   const check1=dice.every(elem=>elem.isHeld)
@@ -17,9 +21,29 @@ React.useEffect(()=>{
   const check2=dice.every(elem=>elem.value===dhd)
   if(check1&&check2){
     setTenzies(true)
+    stopTimer()
+    if(seconds<highscore){
+    setHighScore(localStorage.setItem("HighScore",seconds))
+    }
   }
 
 },[dice])
+
+React.useEffect(() => {
+  startTimer();
+  return () => clearInterval(timerId.current);
+}, []);
+
+const startTimer = () => {
+  timerId.current = setInterval(() => {
+    setSeconds(prevSecond => prevSecond + 1);
+  }, 1000);
+}
+
+const stopTimer=()=>{
+  clearInterval(timerId.current);
+  timerId.current=0;
+}
 
 function holdDice(id){
  setDice(dice.map(elem=>
@@ -35,11 +59,15 @@ function rollDice(){
   if(Tenzies){
     setDice(generateNum)
     setTenzies(false)
+    setSeconds(0)
+    startTimer()
   }
   else{
     setDice(dice.map(elem=>
       elem.isHeld?elem:generate()))
   }
+  setRounds(prevRound=>prevRound+1)
+  console.log(rounds)
 }
 
 let diceElem=dice.map((elem)=>
@@ -56,9 +84,11 @@ let diceElem=dice.map((elem)=>
 
   return (
     <main>
-     
+    <p id='high'>Highscore: <span>{highscore} </span> seconds</p>
+      <p id='seconds'>Seconds: <span>{seconds}</span> </p>
+
        <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+            <p className="instructions">{Tenzies?"Congratulation You Won!!! 🎉":"Roll until all dice are the same. Click each die to freeze it at its current value between rolls."}</p>
       <div className='dieContainer'>
       {diceElem}
       </div>

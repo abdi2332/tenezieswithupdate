@@ -16,6 +16,8 @@ main{
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  position: relative;
+
 }
 .dieContainer {
   display: grid;
@@ -52,4 +54,21 @@ button{
 }
 #roll:hover{
   background-color: rgb(80, 80, 238);
+}
+#high{
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  font-weight: bold;
+  color: rgb(12, 147, 12);
+}
+#seconds{
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-weight: bold;
+}
+span{
+  font-weight: 500;
+  color: rgb(228, 66, 66);
 }
