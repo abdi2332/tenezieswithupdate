@@ -12,7 +12,7 @@ const[Tenzies,setTenzies]=React.useState(false)
 const [rounds,setRounds]=React.useState(1)
 const[seconds,setSeconds]=React.useState(0)
 const[highscore,setHighScore]=React.useState(localStorage.getItem('HighScore'))
-
+// ajhdka
  const timerId=React.useRef()
 
 React.useEffect(()=>{
